@@ -1,0 +1,128 @@
+{
+  "activeEnv": "prod",
+  "dev": {
+    "databaseConnection": {
+      "dbName": "TripDB_DEV",
+      "dbUserName": "Mobiliya",
+      "dbUserPassword": "qwert_1234",
+      "dbHost": "mobiliya.database.cloudapi.cn",
+      "dbPort": 80,
+      "dbDialect": "mssql",
+      "dbInstanceName": "SQLEXPRESS"
+    },
+    "auth": {
+      "JWT_ISSUER": "Fleet",
+      "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
+      "JWT_SECRET_FOR_REFRESH_TOKEN": "JWPVzFWkqGxoE2C2",
+      "JWT_ACCESS_TOKEN_EXPIRY_SECONDS": 10000,
+      "JWT_GRANT_TYPE_PASSWORD": "password",
+      "JWT_GRANT_TYPE_REFRESH_TOKEN": "refresh_token",
+      "JWT_TOKEN_ALGORITHM_TYPE": "HS256",
+      "JWT_ACCESS_TOKEN_STR": "accessToken"
+    },
+    "redis": {
+      "port": 6380,
+      "host": "mobiliya.redis.cache.cloudapi.cn",
+      "option": {
+        "auth_pass": "Z6W2beVx0oxhLiESjIaKqbN7Rgp83GzNLT+GlGOz9WQ="
+      }
+    }
+  },
+  "qa": {
+    "databaseConnection": {
+      "dbName": "TripDB_QA",
+      "dbUserName": "Mobiliya",
+      "dbUserPassword": "qwert_1234",
+      "dbHost": "mobiliya.database.cloudapi.cn",
+      "dbPort": 80,
+      "dbDialect": "mssql",
+      "dbInstanceName": "SQLEXPRESS"
+    },
+    "auth": {
+      "JWT_ISSUER": "Fleet",
+      "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
+      "JWT_SECRET_FOR_REFRESH_TOKEN": "JWPVzFWkqGxoE2C2",
+      "JWT_ACCESS_TOKEN_EXPIRY_SECONDS": 10000,
+      "JWT_GRANT_TYPE_PASSWORD": "password",
+      "JWT_GRANT_TYPE_REFRESH_TOKEN": "refresh_token",
+      "JWT_TOKEN_ALGORITHM_TYPE": "HS256",
+      "JWT_ACCESS_TOKEN_STR": "accessToken"
+    },
+    "redis": {
+      "port": 6380,
+      "host": "mobiliya.redis.cache.cloudapi.cn",
+      "option": {
+        "auth_pass": "V5s9qjyF3XHIquxvYVFLDiJHIvdDwYRs3/tzSE0ZQGw="
+      }
+    }
+  },
+  "prod": {
+    "databaseConnection": {
+      "dbName": "FleetDb",
+      "dbUserName": "sadmin",
+      "dbUserPassword": "Welcome@1",
+      "dbHost": "fleetdb.database.windows.net",
+      "dbPort": 80,
+      "dbDialect": "mssql",
+      "dbInstanceName": "SQLEXPRESS"
+    },
+    "auth": {
+      "JWT_ISSUER": "Fleet",
+      "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
+      "JWT_SECRET_FOR_REFRESH_TOKEN": "JWPVzFWkqGxoE2C2",
+      "JWT_ACCESS_TOKEN_EXPIRY_SECONDS": 10000,
+      "JWT_GRANT_TYPE_PASSWORD": "password",
+      "JWT_GRANT_TYPE_REFRESH_TOKEN": "refresh_token",
+      "JWT_TOKEN_ALGORITHM_TYPE": "HS256",
+      "JWT_ACCESS_TOKEN_STR": "accessToken"
+    },
+    "mongoDB": {
+      "url": "mongodb://trip-service:ob55mr123M6z8pJkBDnNdgQrgkAhuvX9i3dHQ4cRVhKZoKmB0izgeMF9XunHSOH1KusiamuiKsLRaGKcphF51A==@trip-service.documents.azure.com:10255/"
+    },
+    "redis": {
+      "port": 6379,
+      "host": "MSFleet.redis.cache.windows.net",
+      "option": {
+        "auth_pass": "5zMqOS1x+bDx9gvM5Kajsf3tVERUn72AohI0IA5qIHk="
+      }
+    },
+    "iothub": {
+      "CONNECTION_STRING": "HostName=MSFleetIotHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=7SEQU8wY7BqnUkJtTLSJ8nZqs64RGaclqhcM+2Yqt0k=",
+      "BLOB_URL": "mobiliyafleetiothubblobstorage",
+      "BLOB_SAS": "lh7Ir7wlpcEfT8AKN+li8ZmWZtAirVh5pVGryO8NF6GnoyZIATtCN9GDlsa/dRBPG5IJUO1DQypLb2Y8a8rGNw=="
+    }
+  },
+  "local": {
+    "databaseConnection": {
+      "dbName": "FleetDB",
+      "dbUserName": "sa",
+      "dbUserPassword": "root",
+      "dbHost": "localhost",
+      "dbDialect": "mssql",
+      "dbInstanceName": "SQLEXPRESS"
+    },
+    "auth": {
+      "JWT_ISSUER": "Fleet",
+      "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
+      "JWT_SECRET_FOR_REFRESH_TOKEN": "JWPVzFWkqGxoE2C2",
+      "JWT_ACCESS_TOKEN_EXPIRY_SECONDS": 360000,
+      "JWT_GRANT_TYPE_PASSWORD": "password",
+      "JWT_GRANT_TYPE_REFRESH_TOKEN": "refresh_token",
+      "JWT_TOKEN_ALGORITHM_TYPE": "HS256",
+      "JWT_ACCESS_TOKEN_STR": "accessToken"
+    },
+    "mongoDB": {
+      "url": "mongodb://localhost:C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==@localhost:10255/"
+    },
+    "redis": {
+      "port": 6379,
+      "host": "localhost",
+      "option": {}
+    },
+    "iothub": {
+      "CONNECTION_STRING": "HostName=MSFleetIotHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=7SEQU8wY7BqnUkJtTLSJ8nZqs64RGaclqhcM+2Yqt0k=",
+      "BLOB_URL": "mobiliyafleetiothubblobstorage",
+      "BLOB_SAS": "lh7Ir7wlpcEfT8AKN+li8ZmWZtAirVh5pVGryO8NF6GnoyZIATtCN9GDlsa/dRBPG5IJUO1DQypLb2Y8a8rGNw=="
+    }
+  }
+}
