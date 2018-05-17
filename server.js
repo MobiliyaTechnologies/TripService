@@ -77,7 +77,7 @@ app.use('/docs', express.static(path.join(__dirname, 'apidoc')));
 
 // base interface
 app.get('/', function (req, res, next) {
-    res.end('welcome to Fleet Management...!');
+    res.end('Trip service is now running.');
 });
 
 var iotHubService = require('./src/service/iotHub-service');

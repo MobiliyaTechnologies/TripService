@@ -15,7 +15,6 @@ config = config[config.activeEnv].iothub;
 var EventHubClient = require('azure-event-hubs').Client;
 var connectionString = config.CONNECTION_STRING;
 var azure = require('azure-storage');
-var blobSvc = azure.createBlobService(config.BLOB_URL, config.BLOB_SAS);
 var async = require('async');
 var client = EventHubClient.fromConnectionString(connectionString);
 var tripDao = require('../dao/trip-dao');

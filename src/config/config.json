@@ -6,7 +6,6 @@
       "dbUserName": "Mobiliya",
       "dbUserPassword": "qwert_1234",
       "dbHost": "mobiliya.database.cloudapi.cn",
-      "dbPort": 80,
       "dbDialect": "mssql",
       "dbInstanceName": "SQLEXPRESS"
     },
@@ -21,7 +20,7 @@
       "JWT_ACCESS_TOKEN_STR": "accessToken"
     },
     "redis": {
-      "port": 6380,
+      "port": 6379,
       "host": "mobiliya.redis.cache.cloudapi.cn",
       "option": {
         "auth_pass": "Z6W2beVx0oxhLiESjIaKqbN7Rgp83GzNLT+GlGOz9WQ="
@@ -34,7 +33,6 @@
       "dbUserName": "Mobiliya",
       "dbUserPassword": "qwert_1234",
       "dbHost": "mobiliya.database.cloudapi.cn",
-      "dbPort": 80,
       "dbDialect": "mssql",
       "dbInstanceName": "SQLEXPRESS"
     },
@@ -49,7 +47,7 @@
       "JWT_ACCESS_TOKEN_STR": "accessToken"
     },
     "redis": {
-      "port": 6380,
+      "port": 6379,
       "host": "mobiliya.redis.cache.cloudapi.cn",
       "option": {
         "auth_pass": "V5s9qjyF3XHIquxvYVFLDiJHIvdDwYRs3/tzSE0ZQGw="
@@ -57,15 +55,6 @@
     }
   },
   "prod": {
-    "databaseConnection": {
-      "dbName": "FleetDb",
-      "dbUserName": "sadmin",
-      "dbUserPassword": "Welcome@1",
-      "dbHost": "fleetdb.database.windows.net",
-      "dbPort": 80,
-      "dbDialect": "mssql",
-      "dbInstanceName": "SQLEXPRESS"
-    },
     "auth": {
       "JWT_ISSUER": "Fleet",
       "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
@@ -87,20 +76,10 @@
       }
     },
     "iothub": {
-      "CONNECTION_STRING": "HostName=MSFleetIotHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=7SEQU8wY7BqnUkJtTLSJ8nZqs64RGaclqhcM+2Yqt0k=",
-      "BLOB_URL": "mobiliyafleetiothubblobstorage",
-      "BLOB_SAS": "lh7Ir7wlpcEfT8AKN+li8ZmWZtAirVh5pVGryO8NF6GnoyZIATtCN9GDlsa/dRBPG5IJUO1DQypLb2Y8a8rGNw=="
+      "CONNECTION_STRING": "HostName=MSFleetIotHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=7SEQU8wY7BqnUkJtTLSJ8nZqs64RGaclqhcM+2Yqt0k="
     }
   },
   "local": {
-    "databaseConnection": {
-      "dbName": "FleetDB",
-      "dbUserName": "sa",
-      "dbUserPassword": "root",
-      "dbHost": "localhost",
-      "dbDialect": "mssql",
-      "dbInstanceName": "SQLEXPRESS"
-    },
     "auth": {
       "JWT_ISSUER": "Fleet",
       "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
@@ -120,9 +99,7 @@
       "option": {}
     },
     "iothub": {
-      "CONNECTION_STRING": "HostName=MSFleetIotHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=7SEQU8wY7BqnUkJtTLSJ8nZqs64RGaclqhcM+2Yqt0k=",
-      "BLOB_URL": "mobiliyafleetiothubblobstorage",
-      "BLOB_SAS": "lh7Ir7wlpcEfT8AKN+li8ZmWZtAirVh5pVGryO8NF6GnoyZIATtCN9GDlsa/dRBPG5IJUO1DQypLb2Y8a8rGNw=="
+      "CONNECTION_STRING": "HostName=MSFleetIotHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=7SEQU8wY7BqnUkJtTLSJ8nZqs64RGaclqhcM+2Yqt0k="
     }
   }
 }
