@@ -8,6 +8,34 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var expressValidator = require('express-validator');
+
+var fs = require('fs');
+
+//Update config for production environment
+var fileName = './src/config/config.json';
+var file = require(fileName);
+
+if (file.activeEnv == "prod") {
+    if (process.env.CUSTOMCONNSTR_cosmosConnectionString != undefined) {
+        file.prod.mongoDB.url = process.env.CUSTOMCONNSTR_cosmosConnectionString;
+    }
+    if (process.env.CUSTOMCONNSTR_redisHost != undefined) {
+        file.prod.redis.host = process.env.CUSTOMCONNSTR_redisHost;
+    }
+    if (process.env.CUSTOMCONNSTR_redisAuthPass != undefined) {
+        file.prod.redis.option.auth_pass = process.env.CUSTOMCONNSTR_redisAuthPass;
+    }
+    if (process.env.CUSTOMCONNSTR_iothubConnectionString != undefined) {
+        file.prod.iothub.CONNECTION_STRING = process.env.CUSTOMCONNSTR_iothubConnectionString;
+    }
+
+    fs.writeFile(fileName, JSON.stringify(file), function (err) {
+        if (err) return console.log(err);
+        console.log(JSON.stringify(file));
+        console.log('writing to ' + fileName);
+    });
+}
+
 var trip = require('./routes/trip');
 var rule = require('./routes/rule');
 var dao = require('./src/dao/vehicleHistory-dao');
@@ -49,7 +77,7 @@ app.use('/docs/authenticated', function (req, res, next) {
     if (req.body.username == "admin" && req.body.password == "fleet@123") {
 
         let a = path.join(__dirname, 'apidoc/index.html');
-      
+
         fs.readFile(a, function (error, data) {
             if (error) {
                 res.writeHead(404);
