@@ -12,7 +12,7 @@ var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
-require('mongoose-uuid2')(mongoose);
+
 var UUID = mongoose.Types.UUID;
 
 /**
