@@ -7,11 +7,6 @@
  */
 
 /**
- * import project modules
- */
-var constant = require("../constant/constants");
-const secret = 'm@b1l1y@';
-/**
  * export module
  */
 module.exports = {

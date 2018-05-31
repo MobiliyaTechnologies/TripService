@@ -14,7 +14,6 @@
 var HttpStatus = require('http-status-codes');
 var JWT = require('jsonwebtoken');
 var redis = require("redis");
-
 var config = require('./config.json');
 var redisConnectionObj = config[config.activeEnv].redis;
 config = config[config.activeEnv].auth;

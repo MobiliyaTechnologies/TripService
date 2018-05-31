@@ -1989,54 +1989,6 @@ define({ "api": [
         }
       ]
     },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "status",
-            "description": "<p>status of the trip</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "tripNaame",
-            "description": "<p>tripName.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "description",
-            "description": "<p>Description.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Date",
-            "optional": false,
-            "field": "endTime",
-            "description": "<p>End time of trip</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "UUID",
-            "optional": false,
-            "field": "commonId",
-            "description": "<p>common Id of the trip.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n  {\n    \"message\": \"Success\",\n    \"data\": {\n        \"tripName\": \" Updated trip\",\n        \"status\": 2,    \n        \"updatedAt\": \"2018-02-27T11:03:40.144Z\"\n    }\n}",
-          "type": "json"
-        }
-      ]
-    },
     "error": {
       "fields": {
         "Error 4xx": [
@@ -2074,6 +2026,54 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Bad Request\n{\n   \"message\": \"Bad Request\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "tripNaame",
+            "description": "<p>tripName.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Description.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>status.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "endTime",
+            "description": "<p>End time of trip</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "UUID",
+            "optional": false,
+            "field": "commonId",
+            "description": "<p>common Id of the trip.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n  {\n    \"message\": \"Success\",\n    \"data\": {\n        \"tripName\": \" Updated trip\",\n        \"status\": 2,    \n        \"updatedAt\": \"2018-02-27T11:03:40.144Z\"\n    }\n}",
           "type": "json"
         }
       ]

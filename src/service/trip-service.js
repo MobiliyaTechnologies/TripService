@@ -6,10 +6,6 @@
  *  @version 1.0.0
  */
 /**
- * npm modules
- */
-var _ = require('underscore');
-/**
  *  import project module
  */
 var util = require("../util/commonUtil");
@@ -17,7 +13,6 @@ var tripDao = require("../dao/trip-dao");
 var vehicleHistoryDao = require('../dao/vehicleHistory-dao');
 var driverBehaviourDao = require('../dao/driverBehaviour-dao');
 var responseConstant = require("../constant/responseConstant");
-var db = require('../config/databaseConnection');
 var empty = require('is-empty');
 
 

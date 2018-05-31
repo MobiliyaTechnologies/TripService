@@ -14,13 +14,8 @@ var db = require('../config/databaseConnection').dbModel;
 var util = require("../util/commonUtil");
 var responseConstant = require("../constant/responseConstant");
 var logger = require("../util/logger");
-var mongoose = require('mongoose');
-var moment = require('moment');
-var empty = require('is-empty');
 var constants = require("../constant/constants");
-var tripDao = require("../dao/trip-dao");
-var config = require('../config/config.json');
-config = config[config.activeEnv];
+
 
 /**
  * export module
@@ -766,7 +761,7 @@ module.exports = {
                         return resolve(result);
                     }
                     else
-                        return reject(util.responseUtil(null, null, responseConstant.RECORD_NOT_FOUND));
+                        return reject(util.responseUtil(null, null, responseConstant.DRIVER_NOT_FOUND));
                 });
 
             logger.debug("get driver behaviour dao finished");

@@ -15,7 +15,7 @@ var constants = require("../src/constant/constants");
 var util = require('../src/util/commonUtil');
 var empty = require('is-empty');
 var auth = require('../src/config/authentication');
-var db = require('../src/config/databaseConnection');
+
 
 //create trip api
 /**
@@ -135,7 +135,7 @@ router.post('/:tenantId/trips', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.insertData(req).then(function (result) {
@@ -147,7 +147,7 @@ router.post('/:tenantId/trips', function (req, res) {
             });
         }, function (err) {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
-            //   db.closeDbConnection();
+
         });
     }
 });
@@ -251,14 +251,14 @@ router.post('/:tenantId/trips', function (req, res) {
  *
  */
 router.get('/:tenantId/trips/:id', function (req, res) {
-    req.checkParams('tenantId', 'tenantId can not be empty').notEmpty();
+    req.checkParams('tenantId', 'TenantId can not be empty').notEmpty();
     req.checkParams('tenantId', 'Invalid tenantId').isUUID();
 
     req.checkParams('id', 'Id can not be empty').notEmpty();
     req.checkParams('id', 'Invalid id').isUUID();
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.getTripDetails(req).then(function (result) {
@@ -367,24 +367,24 @@ router.get('/:tenantId/trips', function (req, res) {
     req.checkParams('tenantId', 'Invalid TenantId ').isUUID();
 
     if (!empty(req.query.limit)) {
-        req.checkQuery('limit', 'Invalid').optional().isInt();
+        req.checkQuery('limit', 'Invalid limit parameter').optional().isInt();
     }
     if (!empty(req.query.page)) {
-        req.checkQuery('page', 'Invalid').optional().isInt();
+        req.checkQuery('page', 'Invalid page parameter').optional().isInt();
     }
     if (!empty(req.query.sort)) {
-        req.checkQuery('sort', 'Invalid').optional().isIn(constants.tripSortFields);
+        req.checkQuery('sort', 'Invalid sort parameter').optional().isIn(constants.tripSortFields);
     }
     if (!empty(req.query.order)) {
-        req.checkQuery('order', 'Invalid').optional().isIn(constants.order);
+        req.checkQuery('order', 'Invalid order parameter').optional().isIn(constants.order);
     }
     if (!empty(req.query.vehicleId)) {
-        req.checkQuery('vehicleId', 'Invalid').optional().isUUID();
+        req.checkQuery('vehicleId', 'Invalid vehicleId').optional().isUUID();
     }
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.getAllTripData(req).then(function (result) {
@@ -421,7 +421,6 @@ router.get('/:tenantId/trips', function (req, res) {
   * @apiParam {Date} endTime End time of trip
  * @apiParam {Object} [description=null] Description of trip(optional).
  * @apiParam {Number} [status=null] status Status of trip(0,1,2)(optional).
- *  @apiSuccess {Number} status status of the trip
  *
  * @apiParamExample {json} Request-Example:
  *     	{
@@ -490,7 +489,7 @@ router.put('/:tenantId/trips/:id', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.updateData(req).then(function (result) {
@@ -563,7 +562,7 @@ router.delete('/:tenantId/trips/:id', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.deleteData(req).then(function (result) {
@@ -820,16 +819,16 @@ router.get('/:tenantId/vehicleHistory', function (req, res) {
     req.checkParams('tenantId', 'Invalid TenantId ').isUUID();
 
     if (!empty(req.query.limit)) {
-        req.checkQuery('limit', 'Invalid').optional().isInt();
+        req.checkQuery('limit', 'Invalid limit parameter').optional().isInt();
     }
     if (!empty(req.query.page)) {
-        req.checkQuery('page', 'Invalid').optional().isInt();
+        req.checkQuery('page', 'Invalid page parameter').optional().isInt();
     }
     if (!empty(req.query.sort)) {
-        req.checkQuery('sort', 'Invalid').optional().isIn(constants.tripSortFields);
+        req.checkQuery('sort', 'Invalid sort parameter').optional().isIn(constants.tripSortFields);
     }
     if (!empty(req.query.order)) {
-        req.checkQuery('order', 'Invalid').optional().isIn(constants.order);
+        req.checkQuery('order', 'Invalid order parameter').optional().isIn(constants.order);
     }
     if (!empty(req.query.tripId)) {
         req.checkQuery('tripId', 'Invalid tripId').isUUID();
@@ -841,7 +840,7 @@ router.get('/:tenantId/vehicleHistory', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.getAllVehicleHistory(req).then(function (result) {
@@ -994,16 +993,16 @@ router.get('/:tenantId/driver', function (req, res) {
     req.checkParams('tenantId', 'Invalid TenantId ').isUUID();
 
     if (!empty(req.query.limit)) {
-        req.checkQuery('limit', 'Invalid').optional().isInt();
+        req.checkQuery('limit', 'Invalid limit parameter').optional().isInt();
     }
     if (!empty(req.query.page)) {
-        req.checkQuery('page', 'Invalid').optional().isInt();
+        req.checkQuery('page', 'Invalid page parameter').optional().isInt();
     }
     if (!empty(req.query.sort)) {
-        req.checkQuery('sort', 'Invalid').optional().isIn(constants.tripSortFields);
+        req.checkQuery('sort', 'Invalid sort parameter').optional().isIn(constants.tripSortFields);
     }
     if (!empty(req.query.order)) {
-        req.checkQuery('order', 'Invalid').optional().isIn(constants.order);
+        req.checkQuery('order', 'Invalid order parameter').optional().isIn(constants.order);
     }
     if (!empty(req.query.userId)) {
         req.checkQuery('userId', 'Invalid userId').optional().isUUID();
@@ -1011,7 +1010,7 @@ router.get('/:tenantId/driver', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.getAllDriverScore(req).then(function (result) {
@@ -1126,7 +1125,7 @@ router.get('/:tenantId/reports', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             service.getReportData(req).then(function (result) {

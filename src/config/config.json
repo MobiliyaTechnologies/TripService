@@ -1,59 +1,5 @@
 {
   "activeEnv": "prod",
-  "dev": {
-    "databaseConnection": {
-      "dbName": "TripDB_DEV",
-      "dbUserName": "Mobiliya",
-      "dbUserPassword": "qwert_1234",
-      "dbHost": "mobiliya.database.cloudapi.cn",
-      "dbDialect": "mssql",
-      "dbInstanceName": "SQLEXPRESS"
-    },
-    "auth": {
-      "JWT_ISSUER": "Fleet",
-      "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
-      "JWT_SECRET_FOR_REFRESH_TOKEN": "JWPVzFWkqGxoE2C2",
-      "JWT_ACCESS_TOKEN_EXPIRY_SECONDS": 10000,
-      "JWT_GRANT_TYPE_PASSWORD": "password",
-      "JWT_GRANT_TYPE_REFRESH_TOKEN": "refresh_token",
-      "JWT_TOKEN_ALGORITHM_TYPE": "HS256",
-      "JWT_ACCESS_TOKEN_STR": "accessToken"
-    },
-    "redis": {
-      "port": 6379,
-      "host": "mobiliya.redis.cache.cloudapi.cn",
-      "option": {
-        "auth_pass": "Z6W2beVx0oxhLiESjIaKqbN7Rgp83GzNLT+GlGOz9WQ="
-      }
-    }
-  },
-  "qa": {
-    "databaseConnection": {
-      "dbName": "TripDB_QA",
-      "dbUserName": "Mobiliya",
-      "dbUserPassword": "qwert_1234",
-      "dbHost": "mobiliya.database.cloudapi.cn",
-      "dbDialect": "mssql",
-      "dbInstanceName": "SQLEXPRESS"
-    },
-    "auth": {
-      "JWT_ISSUER": "Fleet",
-      "JWT_SECRET_FOR_ACCESS_TOKEN": "XT6PRpRuehFsyMa2",
-      "JWT_SECRET_FOR_REFRESH_TOKEN": "JWPVzFWkqGxoE2C2",
-      "JWT_ACCESS_TOKEN_EXPIRY_SECONDS": 10000,
-      "JWT_GRANT_TYPE_PASSWORD": "password",
-      "JWT_GRANT_TYPE_REFRESH_TOKEN": "refresh_token",
-      "JWT_TOKEN_ALGORITHM_TYPE": "HS256",
-      "JWT_ACCESS_TOKEN_STR": "accessToken"
-    },
-    "redis": {
-      "port": 6379,
-      "host": "mobiliya.redis.cache.cloudapi.cn",
-      "option": {
-        "auth_pass": "V5s9qjyF3XHIquxvYVFLDiJHIvdDwYRs3/tzSE0ZQGw="
-      }
-    }
-  },
   "prod": {
     "auth": {
       "JWT_ISSUER": "Fleet",
@@ -99,7 +45,7 @@
       "option": {}
     },
     "iothub": {
-      "CONNECTION_STRING": "HostName=MSFleetIotHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=7SEQU8wY7BqnUkJtTLSJ8nZqs64RGaclqhcM+2Yqt0k="
+      "CONNECTION_STRING": "HostName=FleetIotHub-30-5.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=ATjeriy24Ktpu0BNkaf+GJva8Q5BuJBdwP56nPDe1Ps="
     }
   }
 }

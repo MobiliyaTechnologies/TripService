@@ -16,15 +16,11 @@ var db = require('../config/databaseConnection').dbModel;
 var util = require("../util/commonUtil");
 var responseConstant = require("../constant/responseConstant");
 var logger = require("../util/logger");
-var mongoose = require('mongoose');
 var moment = require('moment');
 var empty = require('is-empty');
-var vehicleHistotyDao = require('../dao/vehicleHistory-dao');
 var driverBehaviourDao = require("../dao/driverBehaviour-dao");
-var async = require('async');
 var constants = require("../constant/constants");
-var config = require('../config/config.json');
-config = config[config.activeEnv];
+
 
 
 /**
@@ -72,7 +68,7 @@ module.exports = {
                         return resolve(result);
                     }
                     else
-                        return reject(util.responseUtil(null, null, responseConstant.RECORD_NOT_FOUND));
+                        return reject(util.responseUtil(null, null, responseConstant.TRIP_NOT_FOUND));
                 });
 
             logger.debug("get trip dao finished");
@@ -190,7 +186,7 @@ module.exports = {
 
 
                     } else {//not modified
-                        return reject(util.responseUtil(null, null, responseConstant.RECORD_NOT_FOUND));
+                        return reject(util.responseUtil(null, null, responseConstant.TRIP_NOT_FOUND));
                     }
                 }
             });
@@ -213,7 +209,7 @@ module.exports = {
                     if (result.nModified) {
                         return resolve(reqObj);
                     } else {
-                        return reject(util.responseUtil(null, null, responseConstant.RECORD_NOT_FOUND));
+                        return reject(util.responseUtil(null, null, responseConstant.TRIP_NOT_FOUND));
                     }
                 }
             });
@@ -273,7 +269,7 @@ module.exports = {
                         return resolve(result);
                     }
                     else
-                        return reject(util.responseUtil(null, null, responseConstant.RECORD_NOT_FOUND));
+                        return reject(util.responseUtil(null, null, responseConstant.TRIPDETAILS_NOT_FOUND));
                 });
 
             logger.debug("IoT Hub:get trip details dao finished");

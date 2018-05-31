@@ -16,10 +16,7 @@ var mongoose = require('mongoose');
  */
 var config = require('./config.json');
 config = config[config.activeEnv];
-var util = require("../util/commonUtil");
-var responseConstant = require("../constant/responseConstant");
 var logger = require('../util/logger');
-var model = require('../models/common');
 var tripModel = require('../models/trip');
 var driverBehaviourModel = require('../models/driverBehaviour');
 var faultDataModel = require('../models/faultData');

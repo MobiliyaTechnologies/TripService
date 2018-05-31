@@ -6,19 +6,12 @@
  *  @version 1.0.0
  */
 /**
- * npm modules
- */
-var _ = require('underscore');
-/**
  *  import project module
  */
 var util = require("../util/commonUtil");
 var ruleDao = require("../dao/rule-dao");
 var responseConstant = require("../constant/responseConstant");
-var db = require('../config/databaseConnection');
 var empty = require('is-empty');
-
-
 
 /**
   * export module

@@ -12,9 +12,6 @@ var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
-
-var UUID = mongoose.Types.UUID;
-
 /**
  *  Base model schema Object
  *  @type {object}

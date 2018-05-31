@@ -15,15 +15,12 @@ var db = require('../config/databaseConnection').dbModel;
 var util = require("../util/commonUtil");
 var responseConstant = require("../constant/responseConstant");
 var logger = require("../util/logger");
-var mongoose = require('mongoose');
 var moment = require('moment');
-var empty = require('is-empty');
 var ruleDao = require('../dao/rule-dao');
 var geodist = require('geodist');
 var socketServer = require('../../server');
 var async = require('async');
-var config = require('../config/config.json');
-config = config[config.activeEnv];
+
 /**
  * export module
  */

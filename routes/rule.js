@@ -9,14 +9,13 @@ var express = require('express');
 var HttpStatus = require('http-status-codes');
 
 var router = express.Router();
-
 var rule_service = require('../src/service/rule-service');
 var responseConstant = require("../src/constant/responseConstant");
 var constants = require("../src/constant/constants");
 var util = require('../src/util/commonUtil');
 var empty = require('is-empty');
 var auth = require('../src/config/authentication');
-var db = require('../src/config/databaseConnection');
+
 
 
 
@@ -128,7 +127,7 @@ router.post('/:tenantId/geofence', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             rule_service.insertGeofenceData(req).then(function (result) {
@@ -215,14 +214,14 @@ router.get('/:tenantId/geofence', function (req, res) {
     req.checkParams('tenantId', 'TenantId can not be null').notEmpty();
     req.checkParams('tenantId', 'Invalid TenantId ').isUUID();
 
-    req.checkQuery('latitude', 'latitude can not be null').notEmpty();
-    req.checkQuery('longitude', 'longitude can not be null').notEmpty();
+    req.checkQuery('latitude', 'Latitude can not be null').notEmpty();
+    req.checkQuery('longitude', 'Longitude can not be null').notEmpty();
     req.checkQuery('vehicleId', 'VehicleId can not be null').notEmpty();
     req.checkQuery('vehicleId', 'Invalid vehicleId ').isUUID();
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             rule_service.testLocation(req).then(function (result) {
@@ -330,7 +329,7 @@ router.post('/:tenantId/speedings', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             rule_service.insertSpeedingsData(req).then(function (result) {
@@ -448,19 +447,19 @@ router.get('/:tenantId/rules', function (req, res) {
     req.checkParams('tenantId', 'Invalid TenantId ').isUUID();
 
     if (!empty(req.query.limit)) {
-        req.checkQuery('limit', 'Invalid').optional().isInt();
+        req.checkQuery('limit', 'Invalid limit parameter').optional().isInt();
     }
     if (!empty(req.query.page)) {
-        req.checkQuery('page', 'Invalid').optional().isInt();
+        req.checkQuery('page', 'Invalid page parameter').optional().isInt();
     }
     if (!empty(req.query.sort)) {
-        req.checkQuery('sort', 'Invalid').optional().isIn(constants.tripSortFields);
+        req.checkQuery('sort', 'Invalid sort parameter').optional().isIn(constants.tripSortFields);
     }
     if (!empty(req.query.order)) {
-        req.checkQuery('order', 'Invalid').optional().isIn(constants.order);
+        req.checkQuery('order', 'Invalid order parameter').optional().isIn(constants.order);
     }
     if (!empty(req.query.vehicleId)) {
-        req.checkQuery('vehicleId', 'Invalid').optional().isUUID();
+        req.checkQuery('vehicleId', 'Invalid vehicleId').optional().isUUID();
     }
     if (!empty(req.query.ruleType)) {
         req.checkQuery('ruleType', 'Invalid ruleType').optional().isIn(constants.ruleTypes);
@@ -468,7 +467,7 @@ router.get('/:tenantId/rules', function (req, res) {
 
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             rule_service.getAllRuleData(req).then(function (result) {
@@ -567,11 +566,11 @@ router.get('/:tenantId/rules/:id', function (req, res) {
     req.checkParams('tenantId', 'tenantId can not be empty').notEmpty();
     req.checkParams('tenantId', 'Invalid tenantId').isUUID();
 
-    req.checkParams('id', 'Id can not be empty').notEmpty();
-    req.checkParams('id', 'Invalid id').isUUID();
+    req.checkParams('id', 'RuleId can not be empty').notEmpty();
+    req.checkParams('id', 'Invalid RuleId').isUUID();
     var errors = req.validationErrors(true);
     if (errors) {
-        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALIDE_REQUEST_PARAMETERS));
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
     } else {
         auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
             rule_service.getRuleDetails(req).then(function (result) {

@@ -14,12 +14,10 @@ var config = require('../config/config.json');
 config = config[config.activeEnv].iothub;
 var EventHubClient = require('azure-event-hubs').Client;
 var connectionString = config.CONNECTION_STRING;
-var azure = require('azure-storage');
 var async = require('async');
 var client = EventHubClient.fromConnectionString(connectionString);
 var tripDao = require('../dao/trip-dao');
 var vehicleHistoryDao = require('../dao/vehicleHistory-dao');
-var auth = require('../config/authentication');
 var db = require('../config/databaseConnection');
 var driverBehaviourDao = require('../dao/driverBehaviour-dao');
 var logger = require("../util/logger");
@@ -27,11 +25,11 @@ var dbName;
 
 var iothubService_test = {
     storeMessage: function (message) {
-        console.log('Message received:', Object.keys(message.body).length);
-        console.log("Message data:", message.body);
+        logger.info('Message received:', Object.keys(message.body).length);
+        logger.info("Message data:", message.body);
 
         if (Object.keys(message.body).length === 0) {
-            console.log("Message body Empty", message.body);
+            logger.info("Message body Empty", message.body);
         }
         else {
             var data = JSON.parse(message.body.Parameters);
