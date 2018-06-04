@@ -23,7 +23,7 @@ faultData.add({
 
     faultSPN: String,
     faultDescription: String,
-    parameterDateTime: Date,
+    parameterDateTime: String,
     tripId: {
         type: String
     },
