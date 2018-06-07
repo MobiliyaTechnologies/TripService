@@ -532,6 +532,8 @@ module.exports = {
                         driverScore = driverScore + constants.speed_heavy_rating;
                     }
 
+                } else {
+                    driverScore = driverScore + constants.speed_rating;
                 }
 
                 if (result.hardBrakibgAlgo.hardBrakingCount !== undefined) {

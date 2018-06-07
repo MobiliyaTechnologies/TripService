@@ -596,7 +596,7 @@ router.delete('/:tenantId/trips/:id', function (req, res) {
  * @apiParam {Number} limit[limit=0] List limit(optional).
  * @apiParam {String} sort[sort=createdAt]  Sorting on which field(optional).
  * @apiParam {String} order[order=asc] Sorting field order(asc|desc)(optional).
- * @apiParam {UUID} tripId  Trip Id(optional).
+ * @apiParam {UUID} commonId  coomonId of the trip,which is a TripId in vehicle history data(optional).
  * @apiParam {UUID} vehicleId  Vehicle involved in trip(Mandatory)
  *
  * @apiError Unauthorized The  token was invalid.
@@ -830,8 +830,8 @@ router.get('/:tenantId/vehicleHistory', function (req, res) {
     if (!empty(req.query.order)) {
         req.checkQuery('order', 'Invalid order parameter').optional().isIn(constants.order);
     }
-    if (!empty(req.query.tripId)) {
-        req.checkQuery('tripId', 'Invalid tripId').isUUID();
+    if (!empty(req.query.commonId)) {
+        req.checkQuery('commonId', 'Invalid commonId').isUUID();
     }
 
     req.checkQuery('vehicleId', 'vehicleId can not be empty').notEmpty();

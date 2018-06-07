@@ -1697,8 +1697,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "UUID",
             "optional": false,
-            "field": "tripId",
-            "description": "<p>Trip Id(optional).</p>"
+            "field": "commonId",
+            "description": "<p>coomonId of the trip,which is a TripId in vehicle history data(optional).</p>"
           },
           {
             "group": "Parameter",

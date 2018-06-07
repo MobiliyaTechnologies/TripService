@@ -27,8 +27,9 @@ constants.DB_CONNECTION_FAILED = 1130;
 constants.SPEED_RULE_NOT_SETUP = 1131;
 constants.TRIP_NOT_FOUND = 1132;
 constants.RULE_NOT_FOUND = 1133;
-constants.DRIVER_NOT_FOUND = 1134;
+constants.TRIP_NOT_FOUND = 1134;
 constants.TRIPDETAILS_NOT_FOUND = 1135;
+constants.TRIP_EXIST = 1136;
 
 
 /**

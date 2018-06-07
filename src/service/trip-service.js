@@ -188,8 +188,8 @@ module.exports = {
                 reqObj.vehicleId = req.query.vehicleId;
 
             }
-            if (req.query.tripId) {
-                reqObj['data.TripId'] = req.query.tripId;
+            if (req.query.commonId) {
+                reqObj['data.TripId'] = req.query.commonId;
             }
 
 

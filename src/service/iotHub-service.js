@@ -47,108 +47,114 @@ var iothubService_test = {
 
                         if (data.TripId !== 'NA') {
                             tripDao.insertTripData(data).then(function (result) {
-                                var asyncObject = [];
+                                driverBehaviourDao.insertDriverBehaviourDetails(data).then(function (result) {
+                                    var asyncObject = [];
 
-                                //Driver Behaviour Rating Algorithm
-                                //1.1 Fuel Eco Rating-Percenatge of Time and Distance
-                                if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.RPM !== 'NA' && data.RPM !== 0)) {
-                                    asyncObject.push(function (callback) {
-                                        driverBehaviourDao.calculateFuleEcoRating_TimeandDistance(data).then(function (resultTimeandDistance) {
-                                            callback(null, resultTimeandDistance);
-                                        }, function (err) {
-                                            logger.error(err);
-                                            callback(err);
+                                    //Driver Behaviour Rating Algorithm
+                                    //1.1 Fuel Eco Rating-Percenatge of Time and Distance
+                                    if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.RPM !== 'NA' && data.RPM !== 0)) {
+                                        asyncObject.push(function (callback) {
+                                            driverBehaviourDao.calculateFuleEcoRating_TimeandDistance(data).then(function (resultTimeandDistance) {
+                                                callback(null, resultTimeandDistance);
+                                            }, function (err) {
+                                                logger.error(err);
+                                                callback(err);
 
+                                            });
+
+                                        })
+                                        //1.2 Fuel Eco Rating-Average Engine RPM
+                                        asyncObject.push(function (callback) {
+                                            driverBehaviourDao.calculateFuelEcoRating_AverageEngineRPM(data).then(function (resultAverageEngineRPM) {
+                                                callback(null, resultAverageEngineRPM);
+                                            }, function (err) {
+                                                logger.error(err);
+                                                callback(err);
+
+                                            });
                                         });
-
-                                    })
-                                    //1.2 Fuel Eco Rating-Average Engine RPM
-                                    asyncObject.push(function (callback) {
-                                        driverBehaviourDao.calculateFuelEcoRating_AverageEngineRPM(data).then(function (resultAverageEngineRPM) {
-                                            callback(null, resultAverageEngineRPM);
-                                        }, function (err) {
-                                            logger.error(err);
-                                            callback(err);
-
-                                        });
-                                    });
-                                }
-
-                                //2.1 Acceleration Rating Algorithm-Average Pedal Position
-                                if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
-                                    asyncObject.push(function (callback) {
-                                        driverBehaviourDao.calculateAccelerationRating_PedalPosition(data).then(function (resultPedalPosition) {
-                                            callback(null, resultPedalPosition);
-                                        }, function (err) {
-                                            logger.error(err);
-                                            callback(err);
-
-                                        });
-                                    });
-                                }
-
-                                //2.2 Acceleration Rating Algorithm-Average Pedal Position Analytics
-                                if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
-                                    asyncObject.push(function (callback) {
-                                        driverBehaviourDao.calculateAccelerationPedalPosition(data).then(function (resultPedalPosition) {
-                                            callback(null, resultPedalPosition);
-                                        }, function (err) {
-                                            logger.error(err);
-                                            callback(err);
-
-                                        });
-                                    });
-                                }
-
-                                //3.1 Speed Rating Algorithm-
-                                if (data.Speed !== 'NA' && data.Speed !== 0) {
-                                    asyncObject.push(function (callback) {
-                                        driverBehaviourDao.calculateSpeedings(data).then(function (resultPedalPosition) {
-                                            callback(null, resultPedalPosition);
-                                        }, function (err) {
-                                            logger.error(err);
-                                            callback(err);
-
-                                        });
-                                    });
-                                }
-
-                                //4.1 Brake Rating Algorithm-Braking Instantaneous Rating 
-
-                                if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
-                                    asyncObject.push(function (callback) {
-                                        driverBehaviourDao.calculateBrakeRating(data).then(function (resultPedalPosition) {
-                                            callback(null, resultPedalPosition);
-                                        }, function (err) {
-                                            logger.error(err);
-                                            callback(err);
-
-                                        });
-                                    });
-                                }
-
-                                //4.2 Brake Rating Algorithm-Hard Braking Rating(Braking with Clutch at HighSpeed) 
-
-                                if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
-                                    asyncObject.push(function (callback) {
-                                        driverBehaviourDao.calculateHardBraking(data).then(function (resultPedalPosition) {
-                                            callback(null, resultPedalPosition);
-                                        }, function (err) {
-                                            logger.error(err);
-                                            callback(err);
-
-                                        });
-                                    });
-                                }
-
-                                async.series(asyncObject, function (err, result) {
-                                    if (err) {
-                                        logger.error(err);
-
-                                    } else {
-                                        console.log("Driver Behaviour  Result :: ", result);
-
                                     }
+
+                                    //2.1 Acceleration Rating Algorithm-Average Pedal Position
+                                    if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
+                                        asyncObject.push(function (callback) {
+                                            driverBehaviourDao.calculateAccelerationRating_PedalPosition(data).then(function (resultPedalPosition) {
+                                                callback(null, resultPedalPosition);
+                                            }, function (err) {
+                                                logger.error(err);
+                                                callback(err);
+
+                                            });
+                                        });
+                                    }
+
+                                    //2.2 Acceleration Rating Algorithm-Average Pedal Position Analytics
+                                    if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
+                                        asyncObject.push(function (callback) {
+                                            driverBehaviourDao.calculateAccelerationPedalPosition(data).then(function (resultPedalPosition) {
+                                                callback(null, resultPedalPosition);
+                                            }, function (err) {
+                                                logger.error(err);
+                                                callback(err);
+
+                                            });
+                                        });
+                                    }
+
+                                    //3.1 Speed Rating Algorithm-
+                                    if (data.Speed !== 'NA' && data.Speed !== 0) {
+                                        asyncObject.push(function (callback) {
+                                            driverBehaviourDao.calculateSpeedings(data).then(function (resultPedalPosition) {
+                                                callback(null, resultPedalPosition);
+                                            }, function (err) {
+                                                logger.error(err);
+                                                callback(err);
+
+                                            });
+                                        });
+                                    }
+
+                                    //4.1 Brake Rating Algorithm-Braking Instantaneous Rating 
+
+                                    if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
+                                        asyncObject.push(function (callback) {
+                                            driverBehaviourDao.calculateBrakeRating(data).then(function (resultPedalPosition) {
+                                                callback(null, resultPedalPosition);
+                                            }, function (err) {
+                                                logger.error(err);
+                                                callback(err);
+
+                                            });
+                                        });
+                                    }
+
+                                    //4.2 Brake Rating Algorithm-Hard Braking Rating(Braking with Clutch at HighSpeed) 
+
+                                    if ((data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
+                                        asyncObject.push(function (callback) {
+                                            driverBehaviourDao.calculateHardBraking(data).then(function (resultPedalPosition) {
+                                                callback(null, resultPedalPosition);
+                                            }, function (err) {
+                                                logger.error(err);
+                                                callback(err);
+
+                                            });
+                                        });
+                                    }
+
+                                    async.series(asyncObject, function (err, result) {
+                                        if (err) {
+                                            logger.error(err);
+
+                                        } else {
+                                            console.log("Driver Behaviour  Result :: ", result);
+
+                                        }
+
+                                    });
+
+                                }, function (err) {
+                                    logger.error(err);
 
                                 });
 
@@ -156,8 +162,6 @@ var iothubService_test = {
                                 logger.error(err);
 
                             });
-                        } else {
-
                         }
                     }, function (err) {
                         logger.error(err);

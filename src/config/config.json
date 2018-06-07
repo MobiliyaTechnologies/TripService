@@ -1,5 +1,5 @@
 {
-  "activeEnv": "prod",
+  "activeEnv": "local",
   "prod": {
     "auth": {
       "JWT_ISSUER": "Fleet",
@@ -45,7 +45,7 @@
       "option": {}
     },
     "iothub": {
-      "CONNECTION_STRING": "HostName=FleetIotHub-30-5.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=ATjeriy24Ktpu0BNkaf+GJva8Q5BuJBdwP56nPDe1Ps="
+      "CONNECTION_STRING": "HostName=FleetIotHubqa.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=vMyCT9ugw4gM+tlLwLn7SSWrRxhH5bCyL7+VR9S2oa8="
     }
   }
 }

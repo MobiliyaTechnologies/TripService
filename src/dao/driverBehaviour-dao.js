@@ -761,10 +761,46 @@ module.exports = {
                         return resolve(result);
                     }
                     else
-                        return reject(util.responseUtil(null, null, responseConstant.DRIVER_NOT_FOUND));
+                        return reject(util.responseUtil(null, null, responseConstant.TRIP_NOT_FOUND));
                 });
 
             logger.debug("get driver behaviour dao finished");
+        });
+    },
+
+
+    /**
+  * DAO for get create driver behaviour info
+  */
+    insertDriverBehaviourDetails: function (reqObj) {
+        return new Promise(function (resolve, reject) {
+            logger.debug("cretae driver behaviour  dao strated");
+            db.driverBehaviour.find({ tripId: reqObj.TripId }).exec(function (err, result) {
+                if (err) {
+                    return reject(util.responseUtil(null, null, responseConstant.SEQUELIZE_DATABASE_ERROR));
+                } else {
+                    if (result && result.length) {
+                        return resolve(util.responseUtil(null, null, responseConstant.TRIP_EXIST));
+                    } else {
+                        var driverInfo = new db.driverBehaviour({
+                            tripId: reqObj.TripId,
+                            userId: reqObj.UserId
+                        });
+                        driverInfo.save(function (err, result) {
+                            if (result) {
+                                return resolve(result);
+                            }
+                            if (err) {
+                                logger.error(err);
+                                return reject(util.responseUtil(err, null, responseConstant.SEQUELIZE_DATABASE_ERROR));
+
+                            }
+
+                        });
+                    }
+                }
+            });
+            logger.debug("create driver behaviour dao finished");
         });
     },
 
