@@ -1,5 +1,5 @@
 {
-  "activeEnv": "local",
+  "activeEnv": "prod",
   "prod": {
     "auth": {
       "JWT_ISSUER": "Fleet",
