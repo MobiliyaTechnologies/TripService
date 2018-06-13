@@ -42,6 +42,7 @@ var auth = require('../src/config/authentication');
  * @apiParam {Number} status status of the trip.
  * @apiParam {UUID} commonId common Id of the trip.
  * @apiParam {Number} stops stop count  of the trip.(optional)
+ * @apiParam {String} milesDriven miles driven of the trip.(optional)
  *
  * @apiParamExample {json} Request-Example:
  *    	{
@@ -92,6 +93,7 @@ var auth = require('../src/config/authentication');
  * @apiSuccess {Number} status status of the trip.
 *  @apiSuccess {UUID} commonId common Id of the trip.
  * @apiSuccess {Number} stops stop count of the trip.
+ * @apiSuccess {String} milesDriven miles driven of the trip.
  
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -205,7 +207,7 @@ router.post('/:tenantId/trips', function (req, res) {
  * @apiSuccess {String} endLocation End location of trip
  * @apiSuccess {String} vehicleId Vehicle involved in trip
  * @apiSuccess {Number} status status of the trip
- *  @apiSuccess {UUID} commonId common Id of the trip.
+ * @apiSuccess {UUID} commonId common Id of the trip.
  *
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -421,6 +423,7 @@ router.get('/:tenantId/trips', function (req, res) {
   * @apiParam {Date} endTime End time of trip
  * @apiParam {Object} [description=null] Description of trip(optional).
  * @apiParam {Number} [status=null] status Status of trip(0,1,2)(optional).
+ * @apiParam {String} milesDriven miles driven of the trip.(optional)
  *
  * @apiParamExample {json} Request-Example:
  *     	{
@@ -457,7 +460,8 @@ router.get('/:tenantId/trips', function (req, res) {
  * @apiSuccess {Object} description Description.
  * @apiSuccess  {String} status status.
  * @apiSuccess {Date} endTime End time of trip
-* @apiSuccess {UUID} commonId common Id of the trip.
+ * @apiSuccess {UUID} commonId common Id of the trip.
+ * @apiSuccess {String} milesDriven miles driven of the trip.
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *   {

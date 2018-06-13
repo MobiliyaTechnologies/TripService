@@ -85,7 +85,7 @@ driverBehaviour.add({
         total_acc_ped_press: String
 
     },
-    hardBrakibgAlgo: {
+    hardBrakingAlgo: {
         total_time: String,
         high_spd_brk_clt_time: String,
         high_spd_brk_clt_percentage: String,

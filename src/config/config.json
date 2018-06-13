@@ -45,7 +45,7 @@
       "option": {}
     },
     "iothub": {
-      "CONNECTION_STRING": "HostName=FleetIotHubqa.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=vMyCT9ugw4gM+tlLwLn7SSWrRxhH5bCyL7+VR9S2oa8="
+      "CONNECTION_STRING": "HostName=MobiliyaFleetIoTHub.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=3bnb2jVdTcETxmZH4eiwG6VrhrQCIT44Qe1pCklEd/Y="
     }
   }
 }

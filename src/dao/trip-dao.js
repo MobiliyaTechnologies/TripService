@@ -114,6 +114,9 @@ module.exports = {
                         if (updateObj.status === '0') {
                             updateObj.tripCompletedAt = new Date();
                         }
+                        if (!empty(reqObj.milesDriven)) {
+                            updateObj.milesDriven = reqObj.milesDriven;
+                        }
                         updateObj.updatedAt = Date.now();
                         module.exports.updateData(updateObj, { commonId: reqObj.commonId }).then(function (result) {
                             return resolve(result);
@@ -222,7 +225,7 @@ module.exports = {
       */
     insertTripData: function (reqObj) {
         return new Promise(function (resolve, reject) {
-            logger.debug("IoT Hub:insert trip details dao strated");
+            logger.debug("IoT Hub:insert trip details dao started");
             var tripInfo = new db.tripDetails({
                 fuelUsed: reqObj.FuelUsed,
                 latitude: reqObj.Latitude,
@@ -329,7 +332,6 @@ module.exports = {
                 }
 
                 UpdateTripObj.locationDetails = locationDetails;
-                UpdateTripObj.milesDriven = (tripResult[size - 1].milesDriven - tripResult[0].milesDriven).toFixed(2);
                 UpdateTripObj.fuelUsed = (tripResult[0].fuelUsed - tripResult[size - 1].fuelUsed).toFixed(2);
                 UpdateTripObj.topSpeed = maxSpeed;
                 UpdateTripObj.mileage = tripResult[size - 1].mileage;
@@ -368,8 +370,8 @@ module.exports = {
                     if (result.speedingsAlgo.speedCount != undefined) {
                         overSpeeding = parseInt(result.speedingsAlgo.speedCount);
                     }
-                    if (result.hardBrakibgAlgo.hardBrakingCount != undefined) {
-                        hardBraking = parseInt(result.hardBrakibgAlgo.hardBrakingCount);
+                    if (result.hardBrakingAlgo.hardBrakingCount != undefined) {
+                        hardBraking = parseInt(result.hardBrakingAlgo.hardBrakingCount);
                     }
 
                     if (result.accelerationPedalPositionAnalyticsAlgo.acc_ped_harsh_press != undefined) {
@@ -536,10 +538,10 @@ module.exports = {
                     driverScore = driverScore + constants.speed_rating;
                 }
 
-                if (result.hardBrakibgAlgo.hardBrakingCount !== undefined) {
-                    var hBCount = parseFloat(result.hardBrakibgAlgo.hardBrakingCount);
+                if (result.hardBrakingAlgo.hardBrakingCount !== undefined) {
+                    var hBCount = parseFloat(result.hardBrakingAlgo.hardBrakingCount);
 
-                    var hardBrakeCount = (constants.minutes * result.hardBrakibgAlgo.hardBrakingCount) / minutes;
+                    var hardBrakeCount = (constants.minutes * result.hardBrakingAlgo.hardBrakingCount) / minutes;
 
                     if (hardBrakeCount === constants.hardBrakingcount_normal_threshold) {
                         driverScore = driverScore + constants.braking_rating;

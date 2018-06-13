@@ -303,5 +303,8 @@ function isEmptyCheck(body) {
     if (!empty(body.stops)) {
         insertObj.stops = body.stops;
     }
+    if (!empty(body.milesDriven)) {
+        insertObj.milesDriven = body.milesDriven;
+    }
     return insertObj;
 }

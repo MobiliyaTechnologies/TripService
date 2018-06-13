@@ -16,7 +16,6 @@ var store = {};
 err_obj[constants.SUCCESS] = "Success";
 err_obj[constants.TRIP_NOT_FOUND] = "Trip not found";
 err_obj[constants.RULE_NOT_FOUND] = "Rule not found";
-err_obj[constants.TRIP_NOT_FOUND] = "Trip not found";
 err_obj[constants.TRIPDETAILS_NOT_FOUND] = "Trip details not found";
 err_obj[constants.UNAUTHORIZE] = "We are sorry but we are not able to authenticate you. Login again"; 1
 err_obj[constants.INVALID_REQUEST_PARAMETERS] = "Invalid request ";

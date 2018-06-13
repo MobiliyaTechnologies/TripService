@@ -672,20 +672,20 @@ module.exports = {
                     return reject(util.responseUtil(null, null, responseConstant.SEQUELIZE_DATABASE_ERROR));
                 } else {
                     if (result && result.length) {
-                        if (result[0].hardBrakibgAlgo.total_time !== undefined) {
-                            total_time = parseFloat(result[0].hardBrakibgAlgo.total_time);
-                            high_spd_brk_clt_time = parseFloat(result[0].hardBrakibgAlgo.total_time);
-                            hardBrakingCount = parseFloat(result[0].hardBrakibgAlgo.hardBrakingCount);
+                        if (result[0].hardBrakingAlgo.total_time !== undefined) {
+                            total_time = parseFloat(result[0].hardBrakingAlgo.total_time);
+                            high_spd_brk_clt_time = parseFloat(result[0].hardBrakingAlgo.total_time);
+                            hardBrakingCount = parseFloat(result[0].hardBrakingAlgo.hardBrakingCount);
 
 
                             var updateObj = {};
                             var Obj = module.exports.brakingWithClutchAtHighSpeed(veh_spd, brake_pedal_status, total_time, clutch_pedal_status, high_spd_brk_clt_time, hardBrakingCount);
-                            updateObj.hardBrakibgAlgo = Obj;
+                            updateObj.hardBrakingAlgo = Obj;
                         }
                         else {
                             var updateObj = {};
                             var Obj = module.exports.brakingWithClutchAtHighSpeed(veh_spd, brake_pedal_status, total_time, clutch_pedal_status, high_spd_brk_clt_time, hardBrakingCount);
-                            updateObj.hardBrakibgAlgo = Obj;
+                            updateObj.hardBrakingAlgo = Obj;
                         }
 
                         module.exports.updateDriverBehaviourDetails({ tripId: reqObj.TripId }, updateObj).then(function (updateResult) {
@@ -701,7 +701,7 @@ module.exports = {
                         var accelerationPedalPositionAnalytics = new db.driverBehaviour({
                             tripId: reqObj.TripId,
                             userId: reqObj.UserId,
-                            hardBrakibgAlgo: insertObj
+                            hardBrakingAlgo: insertObj
                         });
                         accelerationPedalPositionAnalytics.save(function (err, result) {
                             if (result) {

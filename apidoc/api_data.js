@@ -860,6 +860,13 @@ define({ "api": [
             "optional": false,
             "field": "stops",
             "description": "<p>stop count  of the trip.(optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "milesDriven",
+            "description": "<p>miles driven of the trip.(optional)</p>"
           }
         ]
       },
@@ -984,6 +991,13 @@ define({ "api": [
             "optional": false,
             "field": "stops",
             "description": "<p>stop count of the trip.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "milesDriven",
+            "description": "<p>miles driven of the trip.</p>"
           }
         ]
       },
@@ -1978,6 +1992,13 @@ define({ "api": [
             "field": "status",
             "defaultValue": "null",
             "description": "<p>status Status of trip(0,1,2)(optional).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "milesDriven",
+            "description": "<p>miles driven of the trip.(optional)</p>"
           }
         ]
       },
@@ -2067,6 +2088,13 @@ define({ "api": [
             "optional": false,
             "field": "commonId",
             "description": "<p>common Id of the trip.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "milesDriven",
+            "description": "<p>miles driven of the trip.</p>"
           }
         ]
       },
