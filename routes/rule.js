@@ -74,7 +74,7 @@ var auth = require('../src/config/authentication');
  
  * @apiSuccess {Double} latitude Latitude of the center Location
  * @apiSuccess {Double} longitude  Longitude of the center Location
- * @apiSuccess {Double} radius Radius distance in meters.
+ * @apiSuccess {Double} radius Radius distance in yards.
  * @apiSuccess {UUID} vehicleId Vehicle Id.
  * @apiSuccess {UUID} userId User Id.
  * 
@@ -397,7 +397,7 @@ router.post('/:tenantId/speedings', function (req, res) {
  * @apiSuccess {Double} speedLimit SpeedLimit of the vehicle.
  * @apiSuccess {Double} latitude Latitude of the center Location
  * @apiSuccess {Double} longitude  Longitude of the center Location
- * @apiSuccess {Double} radius Radius distance in meters.
+ * @apiSuccess {Double} radius Radius distance in yards.
  * @apiSuccess {UUID} vehicleId Vehicle Id.
  * @apiSuccess {UUID} userId User Id.
  *
@@ -536,7 +536,7 @@ router.get('/:tenantId/rules', function (req, res) {
  * @apiSuccess {Double} speedLimit SpeedLimit of the vehicle.
  * @apiSuccess {Double} latitude Latitude of the center Location
  * @apiSuccess {Double} longitude  Longitude of the center Location
- * @apiSuccess {Double} radius Radius distance in meters.
+ * @apiSuccess {Double} radius Radius distance in yards.
  * @apiSuccess {UUID} vehicleId Vehicle Id.
  * @apiSuccess {UUID} userId User Id.
  *

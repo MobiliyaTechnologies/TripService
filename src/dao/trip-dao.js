@@ -226,14 +226,45 @@ module.exports = {
     insertTripData: function (reqObj) {
         return new Promise(function (resolve, reject) {
             logger.debug("IoT Hub:insert trip details dao started");
+            var fuelUsed;
+            var time;
+            var milesDriven;
+            var avgSpeed;
+            var mileage;
+            if (reqObj.hasOwnProperty('FuelUsed')) {
+                fuelUsed = reqObj.FuelUsed;
+            } else {
+                fuelUsed = "0";
+            }
+            if (reqObj.hasOwnProperty('ParameterDateTime')) {
+                time = reqObj.ParameterDateTime;
+            } else {
+                time = "NA";
+            }
+            if (reqObj.hasOwnProperty('Distance')) {
+                milesDriven = reqObj.Distance;
+            } else {
+                milesDriven = "0";
+            }
+            if (reqObj.hasOwnProperty('Speed')) {
+                avgSpeed = reqObj.Speed;
+            } else {
+                avgSpeed = "0";
+            }
+            if (reqObj.hasOwnProperty('AvgFuelEcon')) {
+                mileage = reqObj.AvgFuelEcon;
+            } else {
+                mileage = "0";
+            }
+
             var tripInfo = new db.tripDetails({
-                fuelUsed: reqObj.FuelUsed,
+                fuelUsed: fuelUsed,
                 latitude: reqObj.Latitude,
                 longitude: reqObj.Longitude,
-                time: reqObj.ParameterDateTime,
-                milesDriven: reqObj.Distance,
-                avgSpeed: reqObj.Speed,
-                mileage: reqObj.AvgFuelEcon,
+                time: time,
+                milesDriven: milesDriven,
+                avgSpeed: avgSpeed,
+                mileage: mileage,
                 speedings: "0",
                 hardBraking: "00",
                 engineFaults: "NA",
@@ -313,7 +344,7 @@ module.exports = {
                     locationDetails.push({ "latitude": tripResult[i].latitude, "longitude": tripResult[i].longitude, "time": tripResult[i].time });
                 }
                 for (var i = 0; i < size; i++) {
-                    if (tripResult[i].avgSpeed === 'NA' || tripResult[i].avgSpeed === '0') {
+                    if (tripResult[i].avgSpeed === 'NA') {
                         maxSpeed = tripResult[i].avgSpeed;
                         totalSpeed = tripResult[i].avgSpeed;
 

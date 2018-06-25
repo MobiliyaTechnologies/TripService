@@ -124,7 +124,7 @@ router.post('/:tenantId/trips', function (req, res) {
     req.checkParams('tenantId', 'TenantId can not be null').notEmpty();
     req.checkParams('tenantId', 'Invalid TenantId ').isUUID();
     req.checkBody('tripName', 'TripName can not be null.').notEmpty();
-    req.checkBody('tripName', 'Invalid tripName.').isLength(3, 20);
+    req.checkBody('tripName', 'Invalid tripName.').isLength(3, 2000);
     req.checkBody('startLocation', 'StartLocation can not be null').notEmpty();
     req.checkBody('endLocation', 'EndLocation can not be null').notEmpty();
     req.checkBody('vehicleId', 'VehicleId can not be null').notEmpty();
@@ -488,7 +488,7 @@ router.put('/:tenantId/trips/:id', function (req, res) {
     req.checkBody('status', 'Invalid status ').optional().isIn(constants.tripStatus);
 
     if (!empty(req.body.tripName)) {
-        req.checkBody('tripName', 'Invalid tripName.').isLength(3, 20);
+        req.checkBody('tripName', 'Invalid tripName.').isLength(3, 2000);
     }
 
     var errors = req.validationErrors(true);

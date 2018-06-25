@@ -49,10 +49,9 @@ module.exports = {
                             return resolve(util.responseUtil(null, result, responseConstant.GEOFENCE_NOT_SETUP));
                         }
                         for (var i = 0; i < geofenceResult.length; i++) {
-                            var centerLoc = { lat: geofenceResult[i].latitude.value, lon: geofenceResult[i].longitude.value }
-                            var distanceInMeters = geodist(centerLoc, testLoc, { exact: true, unit: 'meters' });
-                            isInside = distanceInMeters < geofenceResult[i].radius.value;
-
+                            var centerLoc = { lat: geofenceResult[i].latitude.value, lon: geofenceResult[i].longitude.value };
+                            var distanceInYards = geodist(centerLoc, testLoc, { exact: true, unit: 'yards' });
+                            isInside = distanceInYards < geofenceResult[i].radius.value;
 
                             //write  result on socket
                             var userId = geofenceResult[i].userId;

@@ -290,7 +290,7 @@
             "type": "Double",
             "optional": false,
             "field": "radius",
-            "description": "<p>Radius distance in meters.</p>"
+            "description": "<p>Radius distance in yards.</p>"
           },
           {
             "group": "Success 200",
@@ -436,7 +436,7 @@
             "type": "Double",
             "optional": false,
             "field": "radius",
-            "description": "<p>Radius distance in meters.</p>"
+            "description": "<p>Radius distance in yards.</p>"
           },
           {
             "group": "Success 200",
@@ -726,7 +726,7 @@
             "type": "Double",
             "optional": false,
             "field": "radius",
-            "description": "<p>Radius distance in meters.</p>"
+            "description": "<p>Radius distance in yards.</p>"
           },
           {
             "group": "Success 200",

@@ -81,9 +81,9 @@ module.exports = {
                 }
                 for (var i = 0; i < geofenceResult.length; i++) {
                     var centerLoc = { lat: geofenceResult[i].latitude.value, lon: geofenceResult[i].longitude.value }
-                    var distanceInMeters = geodist(centerLoc, testLoc, { exact: true, unit: 'meters' });
+                    var distanceInYards = geodist(centerLoc, testLoc, { exact: true, unit: 'yards' });
                     var userId = geofenceResult[i].userId;
-                    isInside = distanceInMeters < geofenceResult[i].radius.value;
+                    isInside = distanceInYards < geofenceResult[i].radius.value;
                     if (isInside) {
                         return resolve({ "isInside": isInside });
                     }
