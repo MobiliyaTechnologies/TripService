@@ -158,6 +158,7 @@ module.exports = {
                     if (result.nModified) {//if nModified is 1 i.e. record is updated
                         module.exports.getTripDetails(reqCondition).then(function (result) {
 
+
                             //calculate and update trip information
                             module.exports.calculateTripdataToUpdate(result).then(function (updateTripObj) {
 
@@ -350,7 +351,7 @@ module.exports = {
 
                     } else {
                         if (+maxSpeed < +tripResult[i].avgSpeed) {
-                            maxSpeed = tripResult[i].avgSpeed;
+                            maxSpeed = (+tripResult[i].avgSpeed).toFixed(2);
                         }
                         totalSpeed = +totalSpeed + +tripResult[i].avgSpeed;
 
@@ -513,7 +514,27 @@ module.exports = {
 
 
             //Accleration Rating algorithm :: credit-25-
-            //3.1 Accleration Pedal Position Analytics Algorithm :: credit 12.5
+            //3.1 Accleration Pedal Position Average Algorithm :: credit 12.5
+            if (result.averageAccelerationPedalPositionAlgo.avg_acc_pedal_pos !== undefined) {
+                var avg_acc_pedal_pos = parseFloat(result.averageAccelerationPedalPositionAlgo.avg_acc_pedal_pos);
+
+                if (avg_acc_pedal_pos <= constants.acc_ped_normal_tresh) {
+                    driverScore = driverScore + constants.acceleration_normal_rating;
+                }
+                else if (avg_acc_pedal_pos > constants.acc_ped_normal_tresh && avg_acc_pedal_pos <= constants.acc_ped_moderate_tresh) {
+                    driverScore = driverScore + constants.acceleration_moderate_rating;
+                }
+                else if (avg_acc_pedal_pos > constants.acc_ped_moderate_tresh && avg_acc_pedal_pos <= constants.acc_ped_heavy_tresh) {
+                    driverScore = driverScore + constants.acceleration_heavy_rating;
+                }
+                else if (avg_acc_pedal_pos > constants.acc_ped_heavy_tresh) {
+                    driverScore = driverScore + constants.acceleration_harsh_rating;
+                }
+            } else {
+                driverScore = driverScore + constants.acceleration_normal_rating;
+            }
+
+            //3.2 Accleration Pedal Position Analytics Algorithm :: credit 12.5
             if (result.accelerationPedalPositionAnalyticsAlgo.total_acc_ped_press !== undefined) {
                 var accNormalPer = parseFloat(result.accelerationPedalPositionAnalyticsAlgo.acc_ped_normal_press);
                 var accModeratePer = parseFloat(result.accelerationPedalPositionAnalyticsAlgo.acc_ped_moderate_press);

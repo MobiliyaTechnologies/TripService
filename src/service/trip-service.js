@@ -112,28 +112,22 @@ module.exports = {
     updateData: function (req) {
         return new Promise(function (resolve, reject) {
             var updateObj = isEmptyCheck(req.body);
-            if (updateObj.status === '0') {
-                updateObj.tripCompletedAt = new Date();
-            }
-            if (updateObj.status === '2') {
-                tripDao.getTripDetails({ commonId: req.params.id, isDeleted: 0 }).then(function (result) {
-                    updateObj.stops = result.stops + 1;
-                    updateObj.updatedAt = new Date();
-                    tripDao.updateData(updateObj, { commonId: req.params.id, isDeleted: 0 }).then(function (result) {
-                        return resolve(util.responseUtil(null, result, responseConstant.SUCCESS));
-                    }, function (err) {
-                        return reject(err);
-                    });
-                });
-            } else {
+            tripDao.getTripDetails({ commonId: req.params.id, isDeleted: 0 }).then(function (tripResult) {
+                if (updateObj.status === '2') {
+                    updateObj.stops = tripResult.stops + 1;
+                }
+                if (updateObj.status === '0') {
+                    updateObj.tripCompletedAt = new Date();
+                }
                 updateObj.updatedAt = new Date();
                 tripDao.updateData(updateObj, { commonId: req.params.id, isDeleted: 0 }).then(function (result) {
                     return resolve(util.responseUtil(null, result, responseConstant.SUCCESS));
                 }, function (err) {
                     return reject(err);
                 });
-
-            }
+            }, function (err) {
+                return reject(err);
+            });
         });
     },
 

@@ -28,7 +28,7 @@ module.exports = {
     calculateFuleEcoRating_TimeandDistance: function (reqObj) {
         return new Promise(function (resolve, reject) {
             logger.debug("time and distance calculation dao started");
-            var veh_speed = reqObj.VehicleSpeed;
+            var veh_speed = reqObj.Speed;
             var eng_speed = reqObj.RPM;
 
             var total_time = 0;
@@ -168,7 +168,7 @@ module.exports = {
             var counter = 0;
             var avg_eng_rpm = 0;
             var eng_speed = reqObj.RPM;
-            var veh_speed = reqObj.VehicleSpeed;
+            var veh_speed = reqObj.Speed;
 
             db.driverBehaviour.find({ tripId: reqObj.TripId }).exec(function (err, result) {
                 if (err) {
@@ -237,14 +237,14 @@ module.exports = {
 
 
     //calculate Acceleration: Average Acceleration Pedal Position Algorithm
-    calculateAccelerationRating_PedalPosition: function (reqObj) {
+    calculateAccelerationRatingPedalPositionAverage: function (reqObj) {
         return new Promise(function (resolve, reject) {
             logger.debug("acceleration calculation dao started");
 
             var counter = 0;
             var avg_acc_pedal_pos = 0;
             var acc_ped_pos = reqObj.AccelPedal;
-            var veh_speed = reqObj.VehicleSpeed;
+            var veh_speed = reqObj.Speed;
 
 
             db.driverBehaviour.find({ tripId: reqObj.TripId }).exec(function (err, result) {
@@ -400,7 +400,7 @@ module.exports = {
     calculateBrakeRating: function (reqObj) {
         return new Promise(function (resolve, reject) {
             logger.debug("braking instantaneous rating calculation dao started");
-            var veh_spd = reqObj.VehicleSpeed;
+            var veh_spd = reqObj.Speed;
             var brake_pedal_status = parseInt(reqObj.BrakeSwitch);
             var clutch_pedal_status = parseInt(reqObj.ClutchSwitch);
 
@@ -521,12 +521,11 @@ module.exports = {
     },
 
     //calculate Acceleration Pedal Position Analytics Algorithm
-    calculateAccelerationPedalPosition: function (reqObj) {
+    calculateAccelerationPedalPositionAnalytics: function (reqObj) {
         return new Promise(function (resolve, reject) {
             logger.debug("accleration pedal position analytics calculation dao started");
-            var veh_spd = reqObj.VehicleSpeed;
+            var veh_spd = reqObj.Speed;
             var acc_ped_pos = reqObj.AccelPedal;
-
 
             var acc_ped_normal_press = 0;
             var acc_ped_moderate_press = 0;
@@ -659,7 +658,7 @@ module.exports = {
     calculateHardBraking: function (reqObj) {
         return new Promise(function (resolve, reject) {
             logger.debug("hard braking calculation dao started");
-            var veh_spd = reqObj.VehicleSpeed;
+            var veh_spd = reqObj.Speed;
             var brake_pedal_status = parseInt(reqObj.BrakeSwitch);
             var clutch_pedal_status = parseInt(reqObj.ClutchSwitch);
 

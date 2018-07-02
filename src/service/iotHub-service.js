@@ -52,7 +52,7 @@ var iothubService_test = {
 
                                     //Driver Behaviour Rating Algorithm
                                     //1.1 Fuel Eco Rating-Percenatge of Time and Distance
-                                    if ((data.hasOwnProperty('VehicleSpeed') && data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.hasOwnProperty('RPM') && data.RPM !== 'NA' && data.RPM !== 0)) {
+                                    if ((data.hasOwnProperty('Speed') && data.Speed !== 'NA' && data.Speed !== 0) && (data.hasOwnProperty('RPM') && data.RPM !== 'NA' && data.RPM !== 0)) {
                                         asyncObject.push(function (callback) {
                                             driverBehaviourDao.calculateFuleEcoRating_TimeandDistance(data).then(function (resultTimeandDistance) {
                                                 callback(null, resultTimeandDistance);
@@ -76,9 +76,9 @@ var iothubService_test = {
                                     }
 
                                     //2.1 Acceleration Rating Algorithm-Average Pedal Position
-                                    if ((data.hasOwnProperty('VehicleSpeed') && data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.hasOwnProperty('AccelPedal') && data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
+                                    if ((data.hasOwnProperty('Speed') && data.Speed !== 'NA' && data.Speed !== 0) && (data.hasOwnProperty('AccelPedal') && data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
                                         asyncObject.push(function (callback) {
-                                            driverBehaviourDao.calculateAccelerationRating_PedalPosition(data).then(function (resultPedalPosition) {
+                                            driverBehaviourDao.calculateAccelerationRatingPedalPositionAverage(data).then(function (resultPedalPosition) {
                                                 callback(null, resultPedalPosition);
                                             }, function (err) {
                                                 logger.error(err);
@@ -89,10 +89,10 @@ var iothubService_test = {
                                     }
 
                                     //2.2 Acceleration Rating Algorithm-Average Pedal Position Analytics
-                                    if ((data.hasOwnProperty('VehicleSpeed') && data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.hasOwnProperty('AccelPedal') && data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
+                                    if ((data.hasOwnProperty('Speed') && data.Speed !== 'NA' && data.Speed !== 0) && (data.hasOwnProperty('AccelPedal') && data.AccelPedal !== 'NA' || data.AccelPedal !== 0)) {
                                         asyncObject.push(function (callback) {
-                                            driverBehaviourDao.calculateAccelerationPedalPosition(data).then(function (resultPedalPosition) {
-                                                callback(null, resultPedalPosition);
+                                            driverBehaviourDao.calculateAccelerationPedalPositionAnalytics(data).then(function (resultPedalPositionAnalytics) {
+                                                callback(null, resultPedalPositionAnalytics);
                                             }, function (err) {
                                                 logger.error(err);
                                                 callback(err);
@@ -104,8 +104,8 @@ var iothubService_test = {
                                     //3.1 Speed Rating Algorithm-
                                     if (data.hasOwnProperty('Speed') && data.Speed !== 'NA' && data.Speed !== 0) {
                                         asyncObject.push(function (callback) {
-                                            driverBehaviourDao.calculateSpeedings(data).then(function (resultPedalPosition) {
-                                                callback(null, resultPedalPosition);
+                                            driverBehaviourDao.calculateSpeedings(data).then(function (resultSpeedExceed) {
+                                                callback(null, resultSpeedExceed);
                                             }, function (err) {
                                                 logger.error(err);
                                                 callback(err);
@@ -116,10 +116,10 @@ var iothubService_test = {
 
                                     //4.1 Brake Rating Algorithm-Braking Instantaneous Rating 
 
-                                    if ((data.hasOwnProperty('VehicleSpeed') && data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.hasOwnProperty('BrakeSwitch') && data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.hasOwnProperty('ClutchSwitch') && data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
+                                    if ((data.hasOwnProperty('Speed') && data.Speed !== 'NA' && data.Speed !== 0) && (data.hasOwnProperty('BrakeSwitch') && data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.hasOwnProperty('ClutchSwitch') && data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
                                         asyncObject.push(function (callback) {
-                                            driverBehaviourDao.calculateBrakeRating(data).then(function (resultPedalPosition) {
-                                                callback(null, resultPedalPosition);
+                                            driverBehaviourDao.calculateBrakeRating(data).then(function (resultInstantaneousBrakeRating) {
+                                                callback(null, resultInstantaneousBrakeRating);
                                             }, function (err) {
                                                 logger.error(err);
                                                 callback(err);
@@ -130,10 +130,10 @@ var iothubService_test = {
 
                                     //4.2 Brake Rating Algorithm-Hard Braking Rating(Braking with Clutch at HighSpeed) 
 
-                                    if ((data.hasOwnProperty('VehicleSpeed') && data.VehicleSpeed !== 'NA' && data.VehicleSpeed !== 0) && (data.hasOwnProperty('BrakeSwitch') && data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.hasOwnProperty('ClutchSwitch') && data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
+                                    if ((data.hasOwnProperty('Speed') && data.Speed !== 'NA' && data.Speed !== 0) && (data.hasOwnProperty('BrakeSwitch') && data.BrakeSwitch === '0' || data.BrakeSwitch === '1') && (data.hasOwnProperty('ClutchSwitch') && data.ClutchSwitch === '0' || data.ClutchSwitch === '1')) {
                                         asyncObject.push(function (callback) {
-                                            driverBehaviourDao.calculateHardBraking(data).then(function (resultPedalPosition) {
-                                                callback(null, resultPedalPosition);
+                                            driverBehaviourDao.calculateHardBraking(data).then(function (resultHardBrakeRating) {
+                                                callback(null, resultHardBrakeRating);
                                             }, function (err) {
                                                 logger.error(err);
                                                 callback(err);
