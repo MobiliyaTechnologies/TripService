@@ -14,7 +14,7 @@ var vehicleHistoryDao = require('../dao/vehicleHistory-dao');
 var driverBehaviourDao = require('../dao/driverBehaviour-dao');
 var responseConstant = require("../constant/responseConstant");
 var empty = require('is-empty');
-
+var constants = require("../constant/constants");
 
 
 /**
@@ -80,7 +80,12 @@ module.exports = {
     getTripDetails: function (req) {
         return new Promise(function (resolve, reject) {
             tripDao.getTripDetails({ commonId: req.params.id, isDeleted: 0 }).then(function (result) {
-                return resolve(util.responseUtil(null, result, responseConstant.SUCCESS));
+                tripDao.getTripFaultData({ tripId: req.params.id, isDeleted: 0 }).then(function (faultDataResult) {
+                    result.faultCount = faultDataResult.count;
+                    return resolve(util.responseUtil(null, result, responseConstant.SUCCESS));
+                }, function (err) {
+                    return reject(err);
+                });
             }, function (err) {
                 return reject(err);
             });
@@ -260,6 +265,15 @@ module.exports = {
         });
     },
 
+
+    /**
+* Controller function for get speed limit value
+*/
+    getConfigDetails: function (req) {
+        var tripConfig = {};
+        tripConfig.speedLimit= constants.speedLimit;
+        return util.responseUtil(null, tripConfig, responseConstant.SUCCESS)
+    }
 }
 
 /**
@@ -299,6 +313,9 @@ function isEmptyCheck(body) {
     }
     if (!empty(body.milesDriven)) {
         insertObj.milesDriven = body.milesDriven;
+    }
+    if (!empty(body.speedings)) {
+        insertObj.speedings = body.speedings;
     }
     return insertObj;
 }

@@ -12,6 +12,7 @@ var util = require("../util/commonUtil");
 var ruleDao = require("../dao/rule-dao");
 var responseConstant = require("../constant/responseConstant");
 var empty = require('is-empty');
+var constants = require("../constant/constants");
 
 /**
   * export module
@@ -139,4 +140,5 @@ module.exports = {
             });
         });
     },
+
 }

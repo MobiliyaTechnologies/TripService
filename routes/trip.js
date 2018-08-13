@@ -43,6 +43,7 @@ var auth = require('../src/config/authentication');
  * @apiParam {UUID} commonId common Id of the trip.
  * @apiParam {Number} stops stop count  of the trip.(optional)
  * @apiParam {String} milesDriven miles driven of the trip.(optional)
+ * @apiParam {String} speedings speed count of the trip.(optional)
  *
  * @apiParamExample {json} Request-Example:
  *    	{
@@ -424,6 +425,7 @@ router.get('/:tenantId/trips', function (req, res) {
  * @apiParam {Object} [description=null] Description of trip(optional).
  * @apiParam {Number} [status=null] status Status of trip(0,1,2)(optional).
  * @apiParam {String} milesDriven miles driven of the trip.(optional)
+ * @apiParam {String} speedings speed count of the trip.(optional)
  *
  * @apiParamExample {json} Request-Example:
  *     	{
@@ -1139,6 +1141,69 @@ router.get('/:tenantId/reports', function (req, res) {
                 res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
 
             });
+        }, function (err) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
+        });
+    }
+});
+
+/*
+/**
+ * @api {get} /:tenantId/config Get Config details
+ * @apiVersion 1.0.0
+ * @apiName Get Config details
+ * @apiGroup Trips
+ *
+ * @apiDescription Get Config Details. 
+ *
+ * @apiExample Example usage:
+ * curl -i -X GET  -d "" http://localhost:3303/80201e76-3360-48d3-9804-e5e6a6a4edcb/config -H "Autherization:<access-token>" -H "Content-Type: application/json"
+ *
+ * @apiHeader {String} Authorization authorization token.
+ *
+ * @apiError BadRequest  Invalid request data.
+ *
+ * @apiError Unauthorized The  token was invalid.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 401 Unauthorized
+ *     {
+ *        "message": "Unauthorized."
+ *     }
+ *
+ * @apiError InternalServerError The Internal Server Error.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     {
+ *        "message": "InternalServerError"
+ *     } 
+ * 
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ {
+    "message": "Success",
+    "data": {
+      "speedLimit":80
+    }
+}
+ *
+ * @apiSampleRequest http://localhost:3303/80201e76-3360-48d3-9804-e5e6a6a4edcb/config
+ *
+ */
+
+router.get('/:tenantId/config', function (req, res) {
+
+    req.checkParams('tenantId', 'TenantId can not be null').notEmpty();
+    req.checkParams('tenantId', 'Invalid TenantId ').isUUID();
+    var errors = req.validationErrors(true);
+    if (errors) {
+        res.status(HttpStatus.BAD_REQUEST).send(util.responseUtil(errors, null, responseConstant.INVALID_REQUEST_PARAMETERS));
+    } else {
+        auth.isTenantIDValid(req, req.params.tenantId).then(function (result) {
+            var result = service.getConfigDetails(req)
+            res.status(HttpStatus.OK).send(result);
         }, function (err) {
             res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
         });

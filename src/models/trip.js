@@ -93,6 +93,18 @@ trip.add({
     }],
     tripCompletedAt: {
         type: Date
+    },
+    hardBraking: {
+        type: Number,
+        default: 0
+    },
+    aggressiveAccelerator: {
+        type: Number,
+        default: 0
+    },
+    faultCount: {
+        type: Number,
+        default: 0
     }
 
 });

@@ -117,6 +117,9 @@ module.exports = {
                         if (!empty(reqObj.milesDriven)) {
                             updateObj.milesDriven = reqObj.milesDriven;
                         }
+                        if (!empty(reqObj.speedings)) {
+                            updateObj.speedings = reqObj.speedings;
+                        }
                         updateObj.updatedAt = Date.now();
                         module.exports.updateData(updateObj, { commonId: reqObj.commonId }).then(function (result) {
                             return resolve(result);
@@ -370,7 +373,8 @@ module.exports = {
 
 
                 module.exports.calculateDriverBehaviour({ tripId: result.commonId }, UpdateTripObj.tripDuration, result.stops).then(function (driverResult) {
-                    UpdateTripObj.speedings = driverResult.driverBehaviour.overSpeeding;
+                    UpdateTripObj.hardBraking = driverResult.driverBehaviour.hardBraking;
+                    UpdateTripObj.aggressiveAccelerator = driverResult.driverBehaviour.aggressiveAccelerator;
                     return resolve(UpdateTripObj);
                 }, function (err) {
                     logger.error("Error in updating driver behaviour score:", err);
@@ -620,4 +624,23 @@ module.exports = {
 
         });
     },
+
+    /**
+  * DAO for get trip fault  data
+  */
+  getTripFaultData: function (reqObj) {
+        return new Promise(function (resolve, reject) {
+            logger.debug("get trip fault  dao started");
+            db.faultData.find(reqObj).exec(function (err, result) {
+                if (err) return reject(util.responseUtil(err, null, responseConstant.SEQUELIZE_DATABASE_ERROR));
+                db.faultData.count(reqObj).exec(function (err, count) {
+                    if (err) return reject(util.responseUtil(err, null, responseConstant.SEQUELIZE_DATABASE_ERROR));
+                    result.rows = result;
+                    result.count = count;
+                    return resolve(result);
+                });
+            });
+            logger.debug("get trip fault dao finished");
+        });
+    }
 }

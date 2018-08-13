@@ -867,6 +867,13 @@
             "optional": false,
             "field": "milesDriven",
             "description": "<p>miles driven of the trip.(optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "speedings",
+            "description": "<p>speed count of the trip.(optional)</p>"
           }
         ]
       },
@@ -1310,6 +1317,87 @@
     "sampleRequest": [
       {
         "url": "http://localhost:3303/80201e76-3360-48d3-9804-e5e6a6a4edcb/trips"
+      }
+    ],
+    "filename": "routes/trip.js",
+    "groupTitle": "Trips"
+  },
+  {
+    "type": "get",
+    "url": "/:tenantId/config",
+    "title": "Get Config details",
+    "version": "1.0.0",
+    "name": "Get_Config_details",
+    "group": "Trips",
+    "description": "<p>Get Config Details.</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i -X GET  -d \"\" http://localhost:3303/80201e76-3360-48d3-9804-e5e6a6a4edcb/config -H \"Autherization:<access-token>\" -H \"Content-Type: application/json\"",
+        "type": "json"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>authorization token.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadRequest",
+            "description": "<p>Invalid request data.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>The  token was invalid.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>The Internal Server Error.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n   \"message\": \"Unauthorized.\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 500 Internal Server Error\n{\n   \"message\": \"InternalServerError\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n {\n    \"message\": \"Success\",\n    \"data\": {\n      \"speedLimit\":80\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "http://localhost:3303/80201e76-3360-48d3-9804-e5e6a6a4edcb/config"
       }
     ],
     "filename": "routes/trip.js",
@@ -1999,6 +2087,13 @@
             "optional": false,
             "field": "milesDriven",
             "description": "<p>miles driven of the trip.(optional)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "speedings",
+            "description": "<p>speed count of the trip.(optional)</p>"
           }
         ]
       },

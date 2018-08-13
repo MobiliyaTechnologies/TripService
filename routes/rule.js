@@ -483,9 +483,6 @@ router.get('/:tenantId/rules', function (req, res) {
         });
     }
 });
-
-
-
 /*
 /**
  * @api {get} /:tenantId/rules/:id Get Rule's Details
@@ -586,5 +583,6 @@ router.get('/:tenantId/rules/:id', function (req, res) {
         });
     }
 });
+
 
 module.exports = router;
